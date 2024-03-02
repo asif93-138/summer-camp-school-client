@@ -7,13 +7,35 @@ import {
 } from "react-router-dom";
 import './index.css'
 import ContextProvider from '../ContextProvider.jsx';
+import PON from './PON.jsx';
+import Home from './Home.jsx';
+import SignIn from './SignIn.jsx';
+import SignUp from './SignUp.jsx';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/login",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      }
+    ]
   },
+  {
+    path: "*",
+    element: <PON />,
+  }
 ]);
 
 

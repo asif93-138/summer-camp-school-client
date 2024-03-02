@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form"
 import auth from '../firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import useGoogleSI from './useSIWG';
+import { Link } from 'react-router-dom';
 
 const SignIn = () => {
+  const [error, setError] = useState('');
   const googleSignIn = useGoogleSI();
   
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
       } = useForm();
       
       const onSubmit = (data) => {
-        console.log(data);
-        console.log(JSON.stringify(data));
+
         signInWithEmailAndPassword(auth, data.email, data.password)
   .then((userCredential) => {
     // Signed in 
-    
+    setError(''); reset();
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+    console.log(errorMessage);
+    setError(errorMessage);
   });
       };
     return (
@@ -39,10 +43,11 @@ const SignIn = () => {
        <label htmlFor='password'>Password : </label>
        <input type='password' id='password' placeholder='password' {...register("password", { required: 'this field is required!' })} />
        {errors.password?.message}
-
+        {(error != '') && <p>{error}</p>}
       <button type='submit' className=''>Submit</button>
     </form>
     <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
+    <p>Don't have an account? Please, <Link to="/signup">Register</Link></p>
         </div>
     );
 };

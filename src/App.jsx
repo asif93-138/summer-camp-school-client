@@ -5,15 +5,14 @@ import './App.css'
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import { CampContext } from '../ContextProvider';
-import auth from '../firebase.config';
-import { signOut } from 'firebase/auth';
+
 
 
 
 function App() {
   const [count, setCount] = useState(0);
   const [initialData, setInitialData] = useState('');
-  console.log(useContext(CampContext));
+  
 
   useEffect(() => {
     fetch('http://localhost:3000/')
@@ -33,13 +32,7 @@ function App() {
     .then(res => res.text())
     .then(data => console.log(data))
   }
-  function logOut() {
-    signOut(auth).then(() => {
-      // Sign-out successful.
-    }).catch((error) => {
-      // An error happened.
-    });
-  }
+
   return (
     <>
       <div>
@@ -62,9 +55,8 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <SignUp />
-      <SignIn />
-      <button type='button' className='' onClick={logOut}>Log Out</button>
+ 
+      
     </>
   )
 }

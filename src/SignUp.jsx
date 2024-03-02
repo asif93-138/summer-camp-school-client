@@ -1,41 +1,51 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from "react-hook-form"
 import auth from '../firebase.config';
 import useGoogleSI from './useSIWG';
 
 const SignUp = () => {
+    const [error, setError] = useState(false);
     const googleSignIn = useGoogleSI();
     const {
         register,
+        reset,
         handleSubmit,
         formState: { errors },
       } = useForm();
       
       const onSubmit = (data) => {
         if (data.password == data.cPassword) {
-            console.log(data);
-            console.log(JSON.stringify(data));
-            createUserWithEmailAndPassword(auth, data.email, data.password)
-  .then((userCredential) => {
-    // Signed up 
-    updateProfile(auth.currentUser, {
-      displayName: data.userName, photoURL: data.photoURL
-    }).then(() => {
-      // Profile updated!
-      // ...
-    }).catch((error) => {
-      // An error occurred
-      console.log(error);
-    });
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(error);
-    // ..
-  });
+
+        const passTest1 = Boolean(data.password.length > 5);
+        const passTest2 = Boolean(/[A-Z]/.test(data.password));
+        const scTest = data.password.replace(/([A-Z]|[a-z]|[0-9])/g, "X");
+        const passTest3 = Boolean(/[^X]/.test(scTest));
+        if (passTest1 && passTest2 && passTest3) {
+          setError(false);
+          createUserWithEmailAndPassword(auth, data.email, data.password)
+          .then((userCredential) => {
+            // Signed up 
+            updateProfile(auth.currentUser, {
+              displayName: data.userName, photoURL: data.photoURL
+            }).then(() => {
+              // Profile updated!
+              reset();
+              // ...
+            }).catch((error) => {
+              // An error occurred
+              console.log(error);
+            });
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(error);
+            // ..
+          });
+          
+        } else {setError(true);}
 
         } else {alert("password didn't match")}
       };
@@ -64,6 +74,7 @@ const SignUp = () => {
        <label htmlFor='photoURL'>Photo URL : </label>
        <input type='url' id='photoURL' placeholder='photo url' {...register("photoURL")} />
        {errors.photoURL?.message}
+       {error && <p>Password must be 6 characters, must have a capital letter and a special character.</p>}
       <button type='submit' className=''>Submit</button>
     </form>
     <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
