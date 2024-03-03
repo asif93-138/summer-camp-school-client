@@ -6,6 +6,7 @@ import useGoogleSI from './useSIWG';
 
 const SignUp = () => {
     const [error, setError] = useState(false);
+    const [fbError, setFBError] = useState('');
     const googleSignIn = useGoogleSI();
     const {
         register,
@@ -31,17 +32,18 @@ const SignUp = () => {
             }).then(() => {
               // Profile updated!
               reset();
+              setFBError('');
               // ...
             }).catch((error) => {
               // An error occurred
-              console.log(error);
+              setFBError(error);
             });
             // ...
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(error);
+            setFBError(error);
             // ..
           });
           
@@ -75,6 +77,7 @@ const SignUp = () => {
        <input type='url' id='photoURL' placeholder='photo url' {...register("photoURL")} />
        {errors.photoURL?.message}
        {error && <p>Password must be 6 characters, must have a capital letter and a special character.</p>}
+       {(fbError != '') && <p>{error}</p>}
       <button type='submit' className=''>Submit</button>
     </form>
     <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
