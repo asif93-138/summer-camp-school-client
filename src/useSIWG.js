@@ -1,8 +1,12 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import auth from "../firebase.config";
+import { useContext } from "react";
+import { CampContext } from "../ContextProvider";
 
-export default function useGoogleSI() {
+export default function useGoogleSI(data) {
+    const contxtData = useContext(CampContext);
     function siwG() {
+        
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
             .then((result) => {
@@ -12,7 +16,10 @@ export default function useGoogleSI() {
                 // The signed-in user info.
                 const user = result.user;
                 // IdP data available using getAdditionalUserInfo(result)
-                // ...
+                if (data == 'inst') {
+                    contxtData.setInstructor(true);
+                    localStorage.setItem('scs-ins-id', 'user-inst');
+                }
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;

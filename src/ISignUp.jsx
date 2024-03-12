@@ -1,14 +1,15 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
 import auth from '../firebase.config';
 import useGoogleSI from './useSIWG';
-import { Link } from 'react-router-dom';
+import { CampContext } from '../ContextProvider';
 
-const SignUp = () => {
+const ISignUp = () => {
+    const contxtData = useContext(CampContext);
     const [error, setError] = useState(false);
     const [fbError, setFBError] = useState('');
-    const googleSignIn = useGoogleSI();
+    const googleSignIn = useGoogleSI('inst');
     const {
         register,
         reset,
@@ -32,6 +33,8 @@ const SignUp = () => {
               displayName: data.userName, photoURL: data.photoURL
             }).then(() => {
               // Profile updated!
+              contxtData.setInstructor(true);
+              localStorage.setItem('scs-ins-id', 'user-inst');
               reset();
               setFBError('');
               // ...
@@ -52,9 +55,6 @@ const SignUp = () => {
 
         } else {alert("password didn't match")}
       };
-    
-    
-
 
     return (
         <div>
@@ -81,10 +81,9 @@ const SignUp = () => {
        {(fbError != '') && <p>{error}</p>}
       <button type='submit' className=''>Submit</button>
     </form>
-    <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
-    <p>Register as <Link to='/isignup'>Instructor</Link></p>
+    <p>Or,<br />Sign in with </p><button onClick={() => googleSignIn('inst')} type='button' className=''>Google</button>
         </div>
     );
 };
 
-export default SignUp;
+export default ISignUp;

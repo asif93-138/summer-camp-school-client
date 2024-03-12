@@ -48,6 +48,7 @@ const SignIn = () => {
     </form>
     <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
     <p>Don't have an account? Please, <Link to="/signup">Register</Link></p>
+    <p>Login as <Link to='/isignin'>Instructor</Link></p>
         </div>
     );
 };
