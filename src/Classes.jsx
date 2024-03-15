@@ -11,9 +11,21 @@ const Classes = () => {
         .then(data => setAllClasses(data))
         if (instructor) {setBtnDis(true)}
     }, [instructor])
-    function courseSelection() {
+    function courseSelection(data) {
         if (user) {
-            
+            const scsObj = {
+                course: data,
+                student: user.uid
+            };
+            fetch('http://localhost:3000/selections', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(scsObj)
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
         } else {
             alert('Please, login first!');
         }
@@ -27,7 +39,7 @@ const Classes = () => {
                 <p>Instructor: {x.insName}</p>
                 <p>Available seats: {x.seats}</p>
                 <p>Price: {x.price}</p>
-                <button type='button' disabled={btnDis} onClick={courseSelection}>Select course</button>
+                <button type='button' disabled={btnDis} onClick={() => courseSelection(x)}>Select course</button>
             </div>))}
         </div>
     );

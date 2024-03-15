@@ -9,6 +9,7 @@ const AddaCls = () => {
         const form = event.target;
         const cIObj = {
             insID: user.uid,
+            insImgURL: user.photoURL,
             cN: form.className.value,
             cImgURL: form.classImgURL.value,
             insName: form.instructor.value,
@@ -17,8 +18,6 @@ const AddaCls = () => {
             price: form.price.value,
             cStatus: 'pending'
         };
-        console.log(cIObj);
-        console.log(JSON.stringify(cIObj));
         
         fetch('http://localhost:3000/classes', {
             method: 'POST',

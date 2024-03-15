@@ -18,6 +18,10 @@ import IDashboard from './IDashboard.jsx';
 import AddaCls from './AddaCls.jsx';
 import MyClasses from './MyClasses.jsx';
 import Classes from './Classes.jsx';
+import Instructors from './Instructors.jsx';
+import Home2 from './Home2.jsx';
+import SDashboard from './SDashboard.jsx';
+import SelectedCls from './SelectedCls.jsx';
 
 
 const router = createBrowserRouter([
@@ -32,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/classes",
         element: <Classes />,
+      },
+      {
+        path: "/instructors",
+        element: <Instructors />,
       },
       {
         path: "/login",
@@ -66,6 +74,20 @@ const router = createBrowserRouter([
       {
         path: "/instructor/myclasses",
         element: <MyClasses />
+      },
+    ]
+  },
+  {
+    path: '/student',
+    element: <Home2 />,
+    children: [
+      {
+        path: '/student/home',
+        element: <SDashboard />
+      },
+      {
+        path: '/student/selected',
+        element: <SelectedCls />
       },
     ]
   },

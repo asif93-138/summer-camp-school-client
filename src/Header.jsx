@@ -37,10 +37,8 @@ const Header = () => {
             <Link to="/classes">Classes</Link>
             {
                 user ? <>
-                    <Link to="/dashboard">Dashboard</Link>
-                    <Link to={linkDirectory}>
-                        <img title={user?.displayName + imgTitle} src={user?.photoURL} className='' />
-                    </Link>
+                    <Link to={linkDirectory}>Dashboard</Link>
+                    <img title={user?.displayName + imgTitle} src={user?.photoURL} className='' />
                     <Link onClick={logOut}>Logout</Link>
                 </>
                     :
