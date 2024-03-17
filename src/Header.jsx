@@ -18,7 +18,11 @@ const Header = () => {
             } else if (cTInfo.userStatus == 'student') {
                 setImgTitle('(student)');
                 setLinkDirectory('/student/home');
+            } else if (cTInfo.userStatus == 'admin') {
+                setImgTitle('(admin)');
+                setLinkDirectory('/admin/home');
             }
+            
         }
     }, [user, cTInfo.userStatus])
     function logOut() {

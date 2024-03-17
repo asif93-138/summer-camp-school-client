@@ -22,6 +22,9 @@ import SDashboard from './SDashboard.jsx';
 import SelectedCls from './SelectedCls.jsx';
 import EnrolledClss from './EnrolledClss.jsx';
 import PaymentHsit from './PaymentHsit.jsx';
+import Home3 from './Home3.jsx';
+import ManageUsers from './ManageUsers.jsx';
+import ADashboard from './ADashboard.jsx';
 
 
 const router = createBrowserRouter([
@@ -88,6 +91,20 @@ const router = createBrowserRouter([
       {
         path: '/student/payment',
         element: <PaymentHsit />
+      },
+    ]
+  },
+  {
+    path: "/admin",
+    element: <Home3 />,
+    children: [
+      {
+        path: "/admin/home",
+        element: <ADashboard />
+      },
+      {
+        path: '/admin/manageusers',
+        element: <ManageUsers />
       },
     ]
   },
