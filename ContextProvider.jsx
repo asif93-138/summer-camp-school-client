@@ -6,15 +6,15 @@ import { onAuthStateChanged } from 'firebase/auth';
 export const CampContext = createContext();
 
 const ContextProvider = ({children}) => {
-    const [instructor, setInstructor] = useState(false);
+    const [userStatus, setUserStatus] = useState();
     const [user, setUser] = useState();
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
             if (user) {
-                if (localStorage.getItem('scs-ins-id')) {
-                    setInstructor(true);
-                }
+                fetch(`http://localhost:3000/user/${user.uid}`)
+                .then(res => res.json())
+                .then(data => setUserStatus(data.userStatus))
             }
           });
         return () => {
@@ -22,7 +22,7 @@ const ContextProvider = ({children}) => {
 		}
     }, [])
     
-    const contextInfo = {user, instructor, setInstructor};
+    const contextInfo = {user, userStatus};
     return (
         <CampContext.Provider value={contextInfo}>
             {children}

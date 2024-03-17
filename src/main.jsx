@@ -11,8 +11,6 @@ import PON from './PON.jsx';
 import Home from './Home.jsx';
 import SignIn from './SignIn.jsx';
 import SignUp from './SignUp.jsx';
-import ISignin from './ISignin.jsx';
-import ISignUp from './ISignUp.jsx';
 import Home1 from './Home1.jsx';
 import IDashboard from './IDashboard.jsx';
 import AddaCls from './AddaCls.jsx';
@@ -22,6 +20,8 @@ import Instructors from './Instructors.jsx';
 import Home2 from './Home2.jsx';
 import SDashboard from './SDashboard.jsx';
 import SelectedCls from './SelectedCls.jsx';
+import EnrolledClss from './EnrolledClss.jsx';
+import PaymentHsit from './PaymentHsit.jsx';
 
 
 const router = createBrowserRouter([
@@ -48,14 +48,6 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
-      },
-      {
-        path: "/isignup",
-        element: <ISignUp />,
-      },
-      {
-        path: "/isignin",
-        element: <ISignin />,
       }
     ]
   },
@@ -88,6 +80,14 @@ const router = createBrowserRouter([
       {
         path: '/student/selected',
         element: <SelectedCls />
+      },
+      {
+        path: '/student/enrolled',
+        element: <EnrolledClss />
+      },
+      {
+        path: '/student/payment',
+        element: <PaymentHsit />
       },
     ]
   },

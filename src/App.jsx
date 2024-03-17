@@ -2,17 +2,13 @@ import { useContext, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import SignUp from './SignUp';
-import SignIn from './SignIn';
 import { CampContext } from '../ContextProvider';
-
-
 
 
 function App() {
   const [count, setCount] = useState(0);
   const [initialData, setInitialData] = useState('');
-  
+  const {user} = useContext(CampContext);
 
   useEffect(() => {
     fetch('http://localhost:3000/')
@@ -32,6 +28,7 @@ function App() {
     .then(res => res.text())
     .then(data => console.log(data))
   }
+
 
   return (
     <>

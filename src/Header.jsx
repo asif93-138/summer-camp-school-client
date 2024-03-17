@@ -12,20 +12,19 @@ const Header = () => {
     
     useEffect(() => {
         if (user) {
-            if (cTInfo.instructor) {
+            if (cTInfo.userStatus == 'instructor') {
                 setImgTitle('(instructor)');
                 setLinkDirectory('/instructor/home');
-            } else {
+            } else if (cTInfo.userStatus == 'student') {
                 setImgTitle('(student)');
                 setLinkDirectory('/student/home');
             }
         }
-    }, [user, cTInfo.instructor])
+    }, [user, cTInfo.userStatus])
     function logOut() {
         signOut(auth).then(() => {
             // Sign-out successful.
-            cTInfo.setInstructor(false);
-            if (localStorage.getItem('scs-ins-id')) {localStorage.removeItem('scs-ins-id')}
+
         }).catch((error) => {
             // An error happened.
         });

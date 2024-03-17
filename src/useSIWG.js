@@ -3,7 +3,7 @@ import auth from "../firebase.config";
 import { useContext } from "react";
 import { CampContext } from "../ContextProvider";
 
-export default function useGoogleSI(data) {
+export default function useGoogleSI() {
     const contxtData = useContext(CampContext);
     function siwG() {
         
@@ -15,11 +15,11 @@ export default function useGoogleSI(data) {
                 const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
+                fetch(`http://localhost:3000/user/${user.uid}`, {
+                  method: 'POST'
+                })
                 // IdP data available using getAdditionalUserInfo(result)
-                if (data == 'inst') {
-                    contxtData.setInstructor(true);
-                    localStorage.setItem('scs-ins-id', 'user-inst');
-                }
+
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;

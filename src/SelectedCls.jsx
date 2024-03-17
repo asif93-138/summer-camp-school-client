@@ -10,20 +10,24 @@ const SelectedCls = () => {
         .then(res => res.json())
         .then(data => setCourses(data))
     }, [user, count])
-    function classDeletion(data) {
+    function classDeletion(data, p1) {
         fetch(`http://localhost:3000/selections/${data}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
         .then(data => {
             if (data.acknowledged) {
-                alert('class deleted!');
                 setCount(count + 1);
+                if (p1 != 'paid') {
+                    alert('class deleted!');
+                } else {
+                    alert('paid!');
+                }
             }
         })
     }
     function coursePayment(cp) {
-        fetch('http://localhost:3000/payments', {
+        fetch(`http://localhost:3000/payments/${cp.course._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -31,7 +35,11 @@ const SelectedCls = () => {
             body: JSON.stringify(cp)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            if (data.result.acknowledged && data.result1.acknowledged) {
+                classDeletion(cp._id, 'paid')
+            }
+        })
     }
     return (
         <div>
@@ -48,7 +56,7 @@ const SelectedCls = () => {
                     headers: {
                         'content-type': 'application/json'
                     },
-                    body: JSON.stringify({cN: 'updated'})
+                    body: JSON.stringify({cN: 'updated 2'})
                 })
                 .then(res => res.json())
                 .then(data => console.log(data))

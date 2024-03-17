@@ -32,6 +32,10 @@ const SignUp = () => {
               displayName: data.userName, photoURL: data.photoURL
             }).then(() => {
               // Profile updated!
+              const user = userCredential.user;
+              fetch(`http://localhost:3000/user/${user.uid}`, {
+                method: 'POST'
+              })
               reset();
               setFBError('');
               // ...
@@ -53,9 +57,6 @@ const SignUp = () => {
         } else {alert("password didn't match")}
       };
     
-    
-
-
     return (
         <div>
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -82,7 +83,6 @@ const SignUp = () => {
       <button type='submit' className=''>Submit</button>
     </form>
     <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
-    <p>Register as <Link to='/isignup'>Instructor</Link></p>
         </div>
     );
 };
