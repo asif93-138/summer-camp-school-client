@@ -25,6 +25,7 @@ import PaymentHsit from './PaymentHsit.jsx';
 import Home3 from './Home3.jsx';
 import ManageUsers from './ManageUsers.jsx';
 import ADashboard from './ADashboard.jsx';
+import ManageCls from './ManageCls.jsx';
 
 
 const router = createBrowserRouter([
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: '/admin/manageusers',
         element: <ManageUsers />
+      },
+      {
+        path: '/admin/manageclasses',
+        element: <ManageCls />
       },
     ]
   },

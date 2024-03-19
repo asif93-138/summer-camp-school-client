@@ -15,8 +15,13 @@ export default function useGoogleSI() {
                 const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
+                const userObj = {id: user.uid, name: user.displayName, email: user.email};
                 fetch(`http://localhost:3000/user/${user.uid}`, {
-                  method: 'POST'
+                  method: 'POST',
+                  headers: {
+                    'content-type': 'application/json'
+                  },
+                  body: JSON.stringify(userObj)
                 })
                 // IdP data available using getAdditionalUserInfo(result)
 

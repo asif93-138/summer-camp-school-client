@@ -5,6 +5,7 @@ const Header3 = () => {
     return (
         <div>
             <Link to='/'>Home</Link>
+            <Link to='/admin/manageclasses'>Classes</Link>
             <Link to='/admin/manageusers'>Users</Link>
         </div>
     );

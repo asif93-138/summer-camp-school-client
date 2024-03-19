@@ -22,8 +22,13 @@ const SignIn = () => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    const userObj = {id: user.uid, name: user.displayName, email: user.email};
     fetch(`http://localhost:3000/user/${user.uid}`, {
-      method: 'POST'
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(userObj)
     })
     setError(''); reset();
     // ...
