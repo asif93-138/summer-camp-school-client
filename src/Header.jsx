@@ -28,7 +28,7 @@ const Header = () => {
     function logOut() {
         signOut(auth).then(() => {
             // Sign-out successful.
-
+            cTInfo.setUserStatus();
         }).catch((error) => {
             // An error happened.
         });

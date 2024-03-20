@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form"
 import auth from '../firebase.config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import useGoogleSI from './useSIWG';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [error, setError] = useState('');
   const googleSignIn = useGoogleSI();
   
@@ -31,6 +32,7 @@ const SignIn = () => {
       body: JSON.stringify(userObj)
     })
     setError(''); reset();
+    navigate('/');
     // ...
   })
   .catch((error) => {
@@ -55,7 +57,7 @@ const SignIn = () => {
         {(error != '') && <p>{error}</p>}
       <button type='submit' className=''>Submit</button>
     </form>
-    <p>Or,<br />Sign in with </p><button onClick={googleSignIn} type='button' className=''>Google</button>
+    <p>Or,<br />Sign in with </p><button onClick={() => {googleSignIn(); navigate('/');}} type='button' className=''>Google</button>
     <p>Don't have an account? Please, <Link to="/signup">Register</Link></p>
         </div>
     );

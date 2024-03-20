@@ -34,13 +34,18 @@ const Classes = () => {
         <div>
             <p>Classes!</p>
             {allClasses.map(x => {
-                if (x.cStatus == 'approved') { return (<div key={x._id}>
+                if (x.cStatus == 'approved') { return (<div key={x._id} style={{
+                    backgroundColor: (Number(x.seats) == x.enrolled) ? 'red' : 'initial' 
+                }}>
                     <img src={x.cImgURL} />
                     <p>Class Name: {x.cN}</p>
                     <p>Instructor: {x.insName}</p>
                     <p>Available seats: {x.seats}</p>
                     <p>Price: {x.price}</p>
-                    <button type='button' disabled={btnDis} onClick={() => courseSelection(x)}>Select course</button>
+                    <button type='button' disabled={(Number(x.seats) == x.enrolled) ?
+                    true
+                     :
+                    btnDis} onClick={() => courseSelection(x)}>Select course</button>
                 </div>);}
             })}
         </div>

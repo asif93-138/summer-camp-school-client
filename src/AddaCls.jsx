@@ -16,6 +16,7 @@ const AddaCls = () => {
             insEmail: form.instructorE.value,
             seats: form.seats.value,
             price: form.price.value,
+            enrolled: 0,
             cStatus: 'pending'
         };
         

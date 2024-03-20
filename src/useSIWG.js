@@ -3,6 +3,7 @@ import auth from "../firebase.config";
 import { useContext } from "react";
 import { CampContext } from "../ContextProvider";
 
+
 export default function useGoogleSI() {
     const contxtData = useContext(CampContext);
     function siwG() {
@@ -23,6 +24,7 @@ export default function useGoogleSI() {
                   },
                   body: JSON.stringify(userObj)
                 })
+                
                 // IdP data available using getAdditionalUserInfo(result)
 
             }).catch((error) => {

@@ -22,7 +22,7 @@ const ContextProvider = ({children}) => {
 		}
     }, [])
     
-    const contextInfo = {user, userStatus};
+    const contextInfo = {user, userStatus, setUserStatus};
     return (
         <CampContext.Provider value={contextInfo}>
             {children}
