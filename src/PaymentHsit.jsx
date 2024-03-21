@@ -8,14 +8,20 @@ const PaymentHsit = () => {
     useEffect(() => {
         fetch(`http://localhost:3000/enrolled/${user?.uid}`)
         .then(res => res.json())
-        .then(data => setPayments(data))
+        .then(data => {
+            const arr = [];
+            data.forEach(x => arr.unshift(x));
+            setPayments(arr);
+        })
+    }, [user])
+    useEffect(() => {
         if (user) {
             let totalP = 0;
             payments.forEach(x => totalP += Number(x.course.price))
             setPaymentT(totalP);
         }
     }, [user, payments])
-
+    
     return (
         <div>
             <p>Total Payments : {paymentT}</p>

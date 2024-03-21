@@ -17,7 +17,9 @@ const MyClasses = () => {
             <p>Class Name: {x.cN}</p>
             <p>Price : {x.price}</p>
             <p>Available Seats : {x.seats}</p>
+            <p>Enrolled : {x.enrolled}</p>
             <p>Status : {x.cStatus}</p>
+            {x?.adminFB && <p>Feedback : {x?.adminFB}</p>}
            </div>))}
         </div>
     );

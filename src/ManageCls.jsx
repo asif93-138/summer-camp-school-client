@@ -33,13 +33,12 @@ const ManageCls = () => {
                 <p>Class Name : {x.cN}</p>
                 <p>Instructor : {x.insName}</p>
                 <p>Instructor Email : {x.insEmail}</p>
-                <p>Instructor : {x.insName}</p>
                 <p>Seats : {x.seats}</p>
                 <p>Price : {x.price}</p>
                 <p><button type='button' disabled={(x.cStatus == 'pending') ? false : true} onClick={() => statusUpdate(x._id, 'ap')}>Approve</button><button type='button' disabled={(x.cStatus == 'pending') ? false : true} onClick={() => statusUpdate(x._id, 'dn')}>Deny</button></p>
-                <div>
+                {(x.cStatus == 'denied') &&                 <div>
                     <input type='text' id='feedBack' /><button type='submit' onClick={() => statusUpdate(x._id)}>Feed Back</button>
-                </div>
+                </div>}
             </div>))}
         </div>
     );

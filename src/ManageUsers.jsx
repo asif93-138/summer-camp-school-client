@@ -38,8 +38,7 @@ const ManageUsers = () => {
         <div>
             All Users
             {users.map(x => (<p key={x._id}>
-                Name : {x.name} Email : {x.email} 
-                status : {x.userStatus}
+                Name : {x.name} Email : {x.email} status : {x.userStatus}
                 {(x.userStatus == 'student') && <button onClick={() => createInst(x._id)} type='button'>Make Instructor</button>}
                 {(x.userStatus != 'admin') && <button onClick={() => createAdmin(x._id)} type='button'>Make Admin</button>}
             </p>))}
