@@ -6,54 +6,36 @@ import { CampContext } from '../ContextProvider';
 
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [initialData, setInitialData] = useState('');
-  const {user} = useContext(CampContext);
-
+  const [classes, setClasses] = useState([]);
+  const [Instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/')
-    .then(res => res.text())
-    .then(data => setInitialData(data))
-  }, [])
-  function BETesting() {
-    const tstObj = {dName: 'express', dNumber: 3}
-    console.log(tstObj);
-    fetch('http://localhost:3000/', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json' 
-      },
-      body: JSON.stringify(tstObj)
+    fetch('http://localhost:3000/classes')
+    .then(res => res.json())
+    .then(data => {
+      data.sort(function(a, b) {return b.enrolled - a.enrolled});
+      setClasses(data.slice(0, 6));
+      const filteredIns = [];
+      data.forEach(x => {
+        if (filteredIns.find(y => y.insID == x.insID) == undefined) {
+            filteredIns.push(x);
+        }
+    });
+    setInstructors(filteredIns.slice(0, 6));
     })
-    .then(res => res.text())
-    .then(data => console.log(data))
-  }
-
+  }, [])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1><h1>{initialData}</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button> <button type='button' onClick={BETesting}>Send Data</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
- 
-      
+    {classes.map(x => (<div key={x._id}>
+      <img src={x.cImgURL} />
+      <p>Class Name : {x.cN}</p>
+      <p>Instructor Name : {x.insName}</p>
+    </div>))}
+    {Instructors.map(x => (<div key={x._id}>
+      <img src={x.insImgURL} />
+      <p>Instructor Name : {x.insName}</p>
+      <p>Email : {x.insEmail}</p>
+    </div>))}
     </>
   )
 }
