@@ -28,6 +28,9 @@ const Header = () => {
     function logOut() {
         signOut(auth).then(() => {
             // Sign-out successful.
+            if (localStorage.getItem("scs-access-token")) {
+                localStorage.removeItem("scs-access-token");
+            }
             cTInfo.setUserStatus();
         }).catch((error) => {
             // An error happened.

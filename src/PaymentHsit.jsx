@@ -6,12 +6,20 @@ const PaymentHsit = () => {
     const [payments, setPayments] = useState([]);
     const [paymentT, setPaymentT] = useState(0);
     useEffect(() => {
-        fetch(`http://localhost:3000/enrolled/${user?.uid}`)
+        fetch(`http://localhost:3000/enrolled/${user?.uid}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+            }
+        })
         .then(res => res.json())
         .then(data => {
-            const arr = [];
-            data.forEach(x => arr.unshift(x));
-            setPayments(arr);
+            if (data.error) {alert(data.message);}
+            else {
+                const arr = [];
+                data.forEach(x => arr.unshift(x));
+                setPayments(arr);
+            }
         })
     }, [user])
     useEffect(() => {

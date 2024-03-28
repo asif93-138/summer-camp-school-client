@@ -24,7 +24,8 @@ export default function useGoogleSI() {
                   },
                   body: JSON.stringify(userObj)
                 })
-                
+                .then(res => res.json())
+                .then(resData => localStorage.setItem('scs-access-token', resData.token))
                 // IdP data available using getAdditionalUserInfo(result)
 
             }).catch((error) => {

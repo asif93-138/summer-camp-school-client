@@ -42,6 +42,8 @@ const SignUp = () => {
                 },
                 body: JSON.stringify(userObj)
               })
+              .then(res => res.json())
+              .then(resData => localStorage.setItem('scs-access-token', resData.token))
               reset();
               setFBError('');
               navigate('/');

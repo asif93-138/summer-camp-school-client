@@ -6,9 +6,17 @@ const MyClasses = () => {
     const [clsDt, setClsDt] = useState([]);
     const [count, setCount] = useState(0);
     useEffect(() => {
-        fetch(`http://localhost:3000/classes/${user?.uid}`)
+        fetch(`http://localhost:3000/classes/${user?.uid}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+            }
+        })
         .then(res => res.json())
-        .then(data => setClsDt(data))
+        .then(data => {
+            if (data.error) {alert(data.message);}
+            else {setClsDt(data)}
+        })
     }, [user, count])
     function updateCourse(event) {
         event.preventDefault();

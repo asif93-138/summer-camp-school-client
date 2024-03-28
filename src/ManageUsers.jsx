@@ -4,9 +4,17 @@ const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const [count, setCount] = useState(0);
     useEffect(() => {
-        fetch('http://localhost:3000/allusers')
+        fetch('http://localhost:3000/allusers', {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+            }
+        })
         .then(res => res.json())
-        .then(data => setUsers(data))
+        .then(data => {
+            if (data.error) {alert(data.message);}
+            else {setUsers(data)}
+        })
     }, [count])
     function createInst(id) {
         fetch(`http://localhost:3000/userstatus/${id}`, {

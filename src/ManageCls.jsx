@@ -4,9 +4,17 @@ const ManageCls = () => {
     const [classes, setClasses] = useState([]);
     const [count, setCount] = useState(0);
     useEffect(() => {
-        fetch('http://localhost:3000/classes')
+        fetch('http://localhost:3000/classes', {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+            }
+        })
         .then(res => res.json())
-        .then(data => setClasses(data))
+        .then(data => {
+            if (data.error) {alert(data.message);}
+            else {setClasses(data)}
+        })
     }, [count])
     function statusUpdate(pm, p1) {
         let updatedObj;

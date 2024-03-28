@@ -31,6 +31,8 @@ const SignIn = () => {
       },
       body: JSON.stringify(userObj)
     })
+    .then(res => res.json())
+    .then(resData => localStorage.setItem('scs-access-token', resData.token))
     setError(''); reset();
     navigate('/');
     // ...

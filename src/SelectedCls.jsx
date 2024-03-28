@@ -6,9 +6,17 @@ const SelectedCls = () => {
     const [courses, setCourses] = useState([]);
     const [count, setCount] = useState(1);
     useEffect(() => {
-        fetch(`http://localhost:3000/selections/${user?.uid}`)
+        fetch(`http://localhost:3000/selections/${user?.uid}`, {
+            method: 'GET',
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+            }
+        })
         .then(res => res.json())
-        .then(data => setCourses(data))
+        .then(data => {
+            if (data.error) {alert(data.message);}
+            else {setCourses(data)}
+        })
     }, [user, count])
     function classDeletion(data, p1) {
         fetch(`http://localhost:3000/selections/${data}`, {

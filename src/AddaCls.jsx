@@ -23,13 +23,17 @@ const AddaCls = () => {
         fetch('http://localhost:3000/classes', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
             },
             body: JSON.stringify(cIObj)
         })
         .then(res => res.json())
         .then(data => {
-            if (data.acknowledged) {alert('class details added!'); form.reset();}
+            if (data.error) {alert(data.message);}
+            else {
+                if (data.acknowledged) {alert('class details added!'); form.reset();}
+            }
         })
     }
     return (
