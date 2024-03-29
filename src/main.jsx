@@ -26,8 +26,15 @@ import Home3 from './Home3.jsx';
 import ManageUsers from './ManageUsers.jsx';
 import ADashboard from './ADashboard.jsx';
 import ManageCls from './ManageCls.jsx';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
-
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -124,10 +131,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <ContextProvider>
-     
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-    
-       
+    </QueryClientProvider>
        </ContextProvider>
   </React.StrictMode>,
 )

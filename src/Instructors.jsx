@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
     const filteredIns = [];
     useEffect(() => {
-        fetch('http://localhost:3000/classes')
-        .then(res => res.json())
-        .then(data => setInstructors(data))
+        axios.get('http://localhost:3000/classes')
+        .then(res => setInstructors(res.data))
     }, [])
     instructors.forEach(x => {
         if (filteredIns.find(y => y.insID == x.insID) == undefined) {

@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CampContext } from '../ContextProvider';
+import axios from 'axios';
 
 const Classes = () => {
     const {user, userStatus} = useContext(CampContext);
     const [allClasses, setAllClasses] = useState([]);
     const [btnDis, setBtnDis] = useState(false);
     useEffect(() => {
-        fetch('http://localhost:3000/classes')
-        .then(res => res.json())
-        .then(data => setAllClasses(data))
+        axios.get('http://localhost:3000/classes')
+        .then(res => setAllClasses(res.data))
         if (userStatus == 'admin' || userStatus == 'instructor') {setBtnDis(true)}
     }, [userStatus])
     function courseSelection(data) {
@@ -30,6 +30,7 @@ const Classes = () => {
             alert('Please, login first!');
         }
     }
+    
     return (
         <div>
             <p>Classes!</p>
