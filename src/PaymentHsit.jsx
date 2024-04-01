@@ -29,13 +29,14 @@ const PaymentHsit = () => {
             setPaymentT(totalP);
         }
     }, [user, payments])
-    
+   
     return (
         <div>
             <p>Total Payments : {paymentT}</p>
             {payments.map(x => (<div key={x._id}>
                 <p>Name: {x.course.cN}</p>
                 <p>price : {x.course.price}</p>
+                <p>Card number : {x.cardNumber}</p>
             </div>))}
         </div>
     );

@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CampContext } from '../ContextProvider';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Classes = () => {
     const {user, userStatus} = useContext(CampContext);
     const [allClasses, setAllClasses] = useState([]);
     const [btnDis, setBtnDis] = useState(false);
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get('http://localhost:3000/classes')
         .then(res => setAllClasses(res.data))
@@ -27,7 +29,7 @@ const Classes = () => {
             .then(res => res.json())
             .then(data => console.log(data))
         } else {
-            alert('Please, login first!');
+            alert('Please, login first!'); navigate('/login');
         }
     }
     

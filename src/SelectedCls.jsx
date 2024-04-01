@@ -35,20 +35,26 @@ const SelectedCls = () => {
         })
     }
     function coursePayment(cp) {
-        fetch(`http://localhost:3000/payments/${cp.course._id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(cp)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.result.acknowledged && data.result1.acknowledged) {
-                classDeletion(cp._id, 'paid')
-            }
-        })
+        let cardNumber = prompt('Enter card number : ');
+        if (cardNumber) {
+            cp.cardNumber = cardNumber;
+          
+            fetch(`http://localhost:3000/payments/${cp.course._id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(cp)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.result.acknowledged && data.result1.acknowledged) {
+                    classDeletion(cp._id, 'paid')
+                }
+            })
+        }
     }
+
     return (
         <div>
             {courses.map(x => (<div key={x._id}>
@@ -57,18 +63,6 @@ const SelectedCls = () => {
                 <p>Instructor: {x.course.insName}</p>
                 <button type='button' onClick={() => coursePayment(x)}>Pay</button><button type='button' onClick={() => classDeletion(x._id)}>Delete</button>
             </div>))}
-            <button type='button' onClick={() => {
-                console.log('testing');
-                fetch('http://localhost:3000/updateTesting', {
-                    method: 'PUT',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify({cN: 'updated 2'})
-                })
-                .then(res => res.json())
-                .then(data => console.log(data))
-            }}>update testing</button>
         </div>
     );
 };

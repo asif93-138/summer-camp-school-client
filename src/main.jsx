@@ -33,6 +33,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import Protected from './Protected.jsx';
 
 const queryClient = new QueryClient();
 
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/instructor",
-    element: <Home1 />,
+    element: <Protected><Home1 /></Protected>,
     children: [
       {
         path: "/instructor/home",
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/student',
-    element: <Home2 />,
+    element: <Protected><Home2 /></Protected>,
     children: [
       {
         path: '/student/home',
@@ -105,7 +106,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Home3 />,
+    element: <Protected><Home3 /></Protected>,
     children: [
       {
         path: "/admin/home",

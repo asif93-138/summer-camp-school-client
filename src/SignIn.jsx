@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form"
 import auth from '../firebase.config';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import useGoogleSI from './useSIWG';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
+
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [error, setError] = useState('');
-  const googleSignIn = useGoogleSI();
+ 
   
     const {
         register,
@@ -44,6 +44,39 @@ const SignIn = () => {
     setError(errorMessage);
   });
       };
+    function smLI() {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+          .then((result) => {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              const credential = GoogleAuthProvider.credentialFromResult(result);
+              const token = credential.accessToken;
+              // The signed-in user info.
+              const user = result.user;
+              const userObj = {id: user.uid, name: user.displayName, email: user.email};
+              fetch(`http://localhost:3000/user/${user.uid}`, {
+                method: 'POST',
+                headers: {
+                  'content-type': 'application/json'
+                },
+                body: JSON.stringify(userObj)
+              })
+              .then(res => res.json())
+              .then(resData => localStorage.setItem('scs-access-token', resData.token))
+              navigate('/');
+
+          }).catch((error) => {
+              // Handle Errors here.
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // The email of the user's account used.
+              const email = error.customData.email;
+              // The AuthCredential type that was used.
+              const credential = GoogleAuthProvider.credentialFromError(error);
+              // ...
+          });
+    }
+
     return (
         <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -59,7 +92,7 @@ const SignIn = () => {
         {(error != '') && <p>{error}</p>}
       <button type='submit' className=''>Submit</button>
     </form>
-    <p>Or,<br />Sign in with </p><button onClick={() => {googleSignIn(); navigate('/');}} type='button' className=''>Google</button>
+    <p>Or,<br />Sign in with </p><button onClick={smLI} type='button' className=''>Google</button>
     <p>Don't have an account? Please, <Link to="/signup">Register</Link></p>
         </div>
     );
