@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { CampContext } from '../ContextProvider';
 import auth from '../firebase.config';
 import { signOut } from 'firebase/auth';
@@ -38,22 +38,57 @@ const Header = () => {
         });
     }
     return (
-        <div>
-            <Link to="/">Home</Link>
-            <Link to="/instructors">Instructors</Link>
-            <Link to="/classes">Classes</Link>
-            {
-                user ? <>
-                    <Link to={linkDirectory}>Dashboard</Link>
-                    <img title={user?.displayName + imgTitle} src={user?.photoURL} className='' />
-                    <Link onClick={logOut}>Logout</Link>
-                </>
-                    :
-                    <>
-                        <Link to="/login">Login</Link>
-                    </>
-            }
-        </div>
+        // <div>
+        //     <Link to="/">Home</Link>
+        //     <Link to="/instructors">Instructors</Link>
+        //     <Link to="/classNamees">Class/Link>
+        //     {
+        //         user ? <>
+        //             <Link to={linkDirectory}>Dashboard</Link>
+        //             <img title={user?.displayName + imgTitle} src={user?.photoURL} classNameName='' />
+        //             <Link onClick={logOut}>Logout</Link>
+        //         </>
+        //             :
+        //             <>
+        //                 <Link to="/login">Login</Link>
+        //             </>
+        //     }
+        // </div>
+        <nav className="navbar navbar-expand-sm navbar-light bg-light"> 
+  <div className="container-fluid">
+    <Link className="navbar-brand" to="/"><b>SUMMER CAMP SCHOOL</b></Link>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="mynavbar">
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item">
+          <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to="/">Home</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to="/instructors">Instructors</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to="/classes">Classes</NavLink>
+        </li>
+        {user && <>
+            <li className="nav-item">
+          <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to={linkDirectory}>Dashboard</NavLink>
+        </li>
+        <li className="nav-item">
+          <img title={user?.displayName + imgTitle} src={user?.photoURL} className='img-fluid user-img rounded-circle mb-2 mb-sm-0 me-2' />
+        </li>
+        </>}
+
+      </ul>
+      {user ? 
+        <button className="btn btn-outline-dark" type="button" onClick={logOut}>Logout</button>
+         :
+         <NavLink className={({isActive}) => isActive ? "btn btn-dark" : "btn btn-outline-dark"} to="/login">Login</NavLink>}
+    
+    </div>
+  </div>
+</nav>
     );
 };
 

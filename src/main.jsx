@@ -33,6 +33,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import Protected from './Protected.jsx';
+import './styles.css';
 
 const queryClient = new QueryClient();
 
