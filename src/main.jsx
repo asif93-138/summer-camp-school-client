@@ -5,7 +5,6 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import './index.css'
 import ContextProvider from '../ContextProvider.jsx';
 import PON from './PON.jsx';
 import Home from './Home.jsx';

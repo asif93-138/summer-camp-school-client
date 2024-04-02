@@ -25,6 +25,7 @@ const Header = () => {
             
         }
     }, [user, cTInfo.userStatus])
+    
     function logOut() {
         signOut(auth).then(() => {
             // Sign-out successful.

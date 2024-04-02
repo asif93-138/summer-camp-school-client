@@ -9,17 +9,24 @@ const ContextProvider = ({children}) => {
     const [userStatus, setUserStatus] = useState();
     const [user, setUser] = useState();
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-            if (user) {
-                fetch(`http://localhost:3000/user/${user.uid}`)
-                .then(res => res.json())
-                .then(data => setUserStatus(data.userStatus))
+            const unsubscribe = onAuthStateChanged(auth, (user) => {
+                setUser(user);
+                if (user) {
+                    if (localStorage.getItem('scs-access-token')) {
+                        fetch(`http://localhost:3000/user/${user.uid}`, {
+                            method: 'GET',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(data => setUserStatus(data.userStatus))
+                    } else {setTimeout(function() {location.reload();}, 500)}
+                }
+              });
+            return () => {
+                unsubscribe();
             }
-          });
-        return () => {
-			unsubscribe();
-		}
     }, [])
     
     const contextInfo = {user, userStatus, setUserStatus};
