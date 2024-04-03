@@ -1,10 +1,22 @@
 .user-img {
     width: 40px;
 }
-
-
+.fl-sp {
+    margin-left: 20%;
+}
+.footer-links {
+    list-style-type: none;
+}
 
 
 @media (max-width: 575px) {
-
+    .footer-flex {
+        flex-direction: column-reverse;
+    }
+    .f-b {
+        border-right: none !important;
+    }
+    .fl-sp {
+        margin-left: 0;
+    }
 }
