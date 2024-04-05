@@ -12,20 +12,9 @@ const Footer = () => {
         <i className="bi px-3 fs-3 bi-linkedin"></i>
         <i className="bi px-3 fs-3 bi-youtube"></i>
         </p>
-        <ul className="d-flex footer-links p-0">
-            <li className="nav-item px-2">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item px-2">
-              <Link className="nav-link" to="/instructors">Instructors</Link>
-            </li>
-            <li className="nav-item px-2">
-              <Link className="nav-link" to="/classes">Classes</Link>
-            </li>
-            <li className="nav-item px-2">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-          </ul>
+        <p className='m-0 text-center'>Summer Camp School, Dhaka, BD.</p>
+        <p className='m-0 text-center'>Email : someone@exapmle.com</p>
+        <p className='m-0 text-center'>Phone : 011-XXXXXXXXX</p>
        </article>
         </section>
         <p className="text-center text-bg-dark mb-0 py-2">Copyright &#169; 2024</p>

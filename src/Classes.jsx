@@ -27,7 +27,11 @@ const Classes = () => {
                 body: JSON.stringify(scsObj)
             })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('Class selected!');
+                }
+            })
         } else {
             alert('Please, login first!'); navigate('/login');
         }

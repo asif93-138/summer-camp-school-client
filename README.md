@@ -1,9 +1,11 @@
-# React + Vite
+# Project Overview 
+## Summer Camp School
+- It's a full stack website with complete CRUD operation.
+- It has an authentication system based on google firebase.
+- 'Dashboard' route can show user specific information.
+- It has 'Admin Panel'.
+- Homepage is mobile responsive and dark/light theme available.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Technology :** MERN, React Router, Bootstrap, Axios, TanStack Query, Env Variables, JWT, React Hook Form.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-"# summer-camp-school-client" 
+[Live link]()
