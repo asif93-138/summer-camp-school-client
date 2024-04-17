@@ -38,23 +38,7 @@ const Header = () => {
         });
     }
     return (
-        // <div>
-        //     <Link to="/">Home</Link>
-        //     <Link to="/instructors">Instructors</Link>
-        //     <Link to="/classNamees">Class/Link>
-        //     {
-        //         user ? <>
-        //             <Link to={linkDirectory}>Dashboard</Link>
-        //             <img title={user?.displayName + imgTitle} src={user?.photoURL} classNameName='' />
-        //             <Link onClick={logOut}>Logout</Link>
-        //         </>
-        //             :
-        //             <>
-        //                 <Link to="/login">Login</Link>
-        //             </>
-        //     }
-        // </div>
-        <nav className="navbar navbar-expand-sm navbar-light bg-light"> 
+  <nav className="navbar navbar-expand-sm navbar-light bg-light mb-4"> 
   <div className="container-fluid">
     <Link className="navbar-brand" to="/"><b>SUMMER CAMP SCHOOL</b></Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">

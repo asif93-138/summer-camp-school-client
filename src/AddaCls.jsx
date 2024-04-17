@@ -37,16 +37,34 @@ const AddaCls = () => {
         })
     }
     return (
-        <div>
-            Add a class
-            <form onSubmit={addingClass}>
-                <input type='text' name='className' placeholder='class name' />
-                <input type='url' name='classImgURL' placeholder='url of class image' />
-                <input type='text' name='instructor' value={user?.displayName} readOnly />
-                <input type='email' name='instructorE' value={user?.email} readOnly />
-                <input type='number' name='seats' placeholder='available seats' />
-                <input type='number' name='price' placeholder='price' />
-                <button type='submit'>Add</button>
+        <div className='container'>
+            <h2 className='text-center'>Add your class</h2>
+            <form className='w-75 mx-auto' onSubmit={addingClass}>
+                <div className='mb-3 mt-3'>
+                <label>Class Name:</label>
+                <input type='text' className='form-control' name='className' placeholder='class name' />
+                </div>
+                <div className='mb-3 mt-3'>
+                <label>Image URL:</label>
+                <input type='url' className='form-control' name='classImgURL' placeholder='url of class image' />
+                </div>
+                <div className='mb-3 mt-3'>
+                <label>Instructor Name:</label>
+                <input type='text' className='form-control' name='instructor' value={user?.displayName} readOnly />
+                </div>
+                <div className='mb-3 mt-3'>
+                <label>Instructor Email:</label>
+                <input type='email' className='form-control' name='instructorE' value={user?.email} readOnly />
+                </div>
+                <div className='mb-3 mt-3'>
+                <label>Number of Seats:</label>
+                <input type='number' className='form-control' name='seats' placeholder='available seats' />
+                </div>
+                <div className='mb-3 mt-3'>
+                <label>Price:</label>
+                <input type='number' className='form-control' name='price' placeholder='price' />
+                </div>
+                <button type='submit' className='btn btn-outline-dark'>Add</button>
             </form>
         </div>
     );

@@ -17,11 +17,28 @@ const EnrolledClss = () => {
             else {setEnrolled(data)}
         })
     }, [user])
+   
     return (
-        <div>
-            {enrolled.map(x => (<div key={x._id}>
-                <p>Course Name : {x.course.cN}</p>
-            </div>))}
+        <div className='container text-center'>
+            <h2>Classes you have enrolled</h2>
+            <table className='table'>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Photo</th>
+                    <th>Class Name</th>
+                    <th>Instructor</th>
+                  </tr>
+                </thead>
+                <tbody>
+            {enrolled.map(x => (<tr key={x._id}>
+                <td>{enrolled.indexOf(x) + 1}</td>
+                <td><img src={x.course.cImgURL} className='ins-tab-img' /></td>
+                <td>{x.course.cN}</td>
+                <td>{x.course.insName}</td>
+            </tr>))}
+            </tbody>
+            </table>
         </div>
     );
 };

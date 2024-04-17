@@ -78,22 +78,28 @@ const SignIn = () => {
     }
 
     return (
-        <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='container'>
+          <h2 className='text-center'>Login</h2>
+      <form className='w-75 mx-auto' onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
-
+      <div className='mb-3 mt-3'>
       <label htmlFor='email'>Email : </label>
-      <input type='email' id='email' placeholder='email' {...register("email", { required: 'this field is required!' })} />
+      <input type='email' className='form-control' id='email' placeholder='email' {...register("email", { required: 'this field is required!' })} />
       {/* errors will return when field validation fails  */}
        {errors.email?.message}
+       </div>
+       <div className='mb-3'>
        <label htmlFor='password'>Password : </label>
-       <input type='password' id='password' placeholder='password' {...register("password", { required: 'this field is required!' })} />
+       <input type='password' className='form-control' id='password' placeholder='password' {...register("password", { required: 'this field is required!' })} />
        {errors.password?.message}
+       </div>
         {(error != '') && <p>{error}</p>}
-      <button type='submit' className=''>Submit</button>
+      <button type='submit' className='btn btn-outline-dark'>Submit</button>
     </form>
-    <p>Or,<br />Sign in with </p><button onClick={smLI} type='button' className=''>Google</button>
+      <div className='w-75 mx-auto text-center'>
+      <p>Or,<br />Sign in with </p><button onClick={smLI} type='button' className='btn btn-outline-dark'>Google</button>
     <p>Don't have an account? Please, <Link to="/signup">Register</Link></p>
+      </div>
         </div>
     );
 };

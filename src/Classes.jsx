@@ -38,24 +38,29 @@ const Classes = () => {
     }
     
     return (
-        <div>
-            <p>Classes!</p>
+    <div className='container'>
+                <div className='row'>
             {allClasses.map(x => {
                 if (x.cStatus == 'approved') { return (<div key={x._id} style={{
-                    backgroundColor: (Number(x.seats) == x.enrolled) ? 'red' : 'initial' 
-                }}>
-                    <img src={x.cImgURL} />
-                    <p>Class Name: {x.cN}</p>
-                    <p>Instructor: {x.insName}</p>
-                    <p>Available seats: {x.seats}</p>
-                    <p>Price: {x.price}</p>
-                    <button type='button' disabled={(Number(x.seats) == x.enrolled) ?
+                    backgroundColor: (Number(x.seats) == x.enrolled) ? 'red' : 'initial'
+                }} className='col-sm-4'>
+                    <div className='card p-3 m-4'>
+                    <img src={x.cImgURL} className='card-img-top' />
+                    <div className="card-body mt-3 text-center">
+                    <h6 className="card-title mb-3">Class Name: {x.cN}</h6>
+                    <p className="card-text">Instructor: {x.insName}</p>
+                    <p className="card-text">Available seats: {x.seats}</p>
+                    <p className="card-text">Price: {x.price}</p>
+                    <button type='button' className='btn btn-primary' disabled={(Number(x.seats) == x.enrolled) ?
                     true
                      :
                     btnDis} onClick={() => courseSelection(x)}>Select course</button>
+                    </div>
+                    </div>
                 </div>);}
             })}
         </div>
+    </div>
     );
 };
 

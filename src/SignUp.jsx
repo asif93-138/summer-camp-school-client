@@ -99,31 +99,44 @@ const SignUp = () => {
             });
       }
     return (
-        <div>
-    <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='container'>
+          <h2 className='text-center'>Sign Up</h2>
+    <form className='w-75 mx-auto' onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
+      <div className='mb-3 mt-3'>
       <label htmlFor='userName'>Name : </label>
-      <input type='text' id='userName' placeholder='name' {...register("userName")} />
+      <input type='text' className='form-control' id='userName' placeholder='name' {...register("userName")} />
         {errors.userName?.message}
+        </div>
       {/* include validation with required or other standard HTML validation rules */}
+      <div className='mb-3 mt-3'>
       <label htmlFor='email'>Email : </label>
-      <input type='email' id='email' placeholder='email' {...register("email", { required: 'this field is required!' })} />
+      <input type='email' className='form-control' id='email' placeholder='email' {...register("email", { required: 'this field is required!' })} />
       {/* errors will return when field validation fails  */}
        {errors.email?.message}
+       </div>
+       <div className='mb-3 mt-3'>
        <label htmlFor='password'>Password : </label>
-       <input type='password' id='password' placeholder='password' {...register("password", { required: 'this field is required!' })} />
+       <input type='password' className='form-control' id='password' placeholder='password' {...register("password", { required: 'this field is required!' })} />
        {errors.password?.message}
+       </div>
+       <div className='mb-3 mt-3'>
        <label htmlFor='cPassword'>Confirm Password : </label>
-       <input type='password' id='cPassword' placeholder='confirm password' {...register("cPassword", { required: 'this field is required!' })} />
+       <input type='password' className='form-control' id='cPassword' placeholder='confirm password' {...register("cPassword", { required: 'this field is required!' })} />
        {errors.cPassword?.message}
+       </div>
+       <div className='mb-3 mt-3'>
        <label htmlFor='photoURL'>Photo URL : </label>
-       <input type='url' id='photoURL' placeholder='photo url' {...register("photoURL")} />
+       <input type='url'  className='form-control' id='photoURL' placeholder='photo url' {...register("photoURL")} />
        {errors.photoURL?.message}
+       </div>
        {error && <p>Password must be 6 characters, must have a capital letter and a special character.</p>}
        {(fbError != '') && <p>{error}</p>}
-      <button type='submit' className=''>Submit</button>
+      <button type='submit' className='btn btn-outline-dark'>Submit</button>
     </form>
-    <p>Or,<br />Sign in with </p><button onClick={smLI} type='button' className=''>Google</button>
+      <div className='w-75 mx-auto text-center'>
+      <p>Or,<br />Sign in with </p><button onClick={smLI} type='button' className='btn btn-outline-dark'>Google</button>
+      </div>
         </div>
     );
 };

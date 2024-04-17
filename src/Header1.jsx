@@ -1,13 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header1 = () => {
     return (
-        <div>
-            <Link to='/'>Home</Link>
-            <Link to='/instructor/aac'>Add a Class</Link>
-            <Link to='/instructor/myclasses'>My Classes</Link>
+        <nav className="navbar navbar-expand-sm navbar-light bg-light mb-4"> 
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/"><b>SUMMER CAMP SCHOOL</b></Link>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="mynavbar">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to="/">Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to="/instructor/aac">Add a Class</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className={({isActive}) => isActive ? "nav-link fw-bold" : "nav-link"} to="/instructor/myclasses">My Classes</NavLink>
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
     );
 };
 

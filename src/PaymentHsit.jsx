@@ -31,13 +31,27 @@ const PaymentHsit = () => {
     }, [user, payments])
    
     return (
-        <div>
-            <p>Total Payments : {paymentT}</p>
-            {payments.map(x => (<div key={x._id}>
-                <p>Name: {x.course.cN}</p>
-                <p>price : {x.course.price}</p>
-                <p>Card number : {x.cardNumber}</p>
-            </div>))}
+        <div className='container text-center'>
+            <h2>Classes you have enrolled</h2>
+            <h4>Total Payments : {paymentT}</h4>
+            <table className='table'>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Class Name</th>
+                    <th>Price</th>
+                    <th>Card number</th>
+                  </tr>
+                </thead>
+                <tbody>
+            {payments.map(x => (<tr key={x._id}>
+                <td>{payments.indexOf(x) + 1}</td>
+                <td>{x.course.cN}</td>
+                <td>{x.course.price}</td>
+                <td>{x.cardNumber}</td>
+            </tr>))}
+            </tbody>
+            </table>
         </div>
     );
 };

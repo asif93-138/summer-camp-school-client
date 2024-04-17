@@ -43,13 +43,27 @@ const ManageUsers = () => {
         })
     }
     return (
-        <div>
-            All Users
-            {users.map(x => (<p key={x._id}>
-                Name : {x.name} Email : {x.email} status : {x.userStatus}
-                {(x.userStatus == 'student') && <button onClick={() => createInst(x._id)} type='button'>Make Instructor</button>}
-                {(x.userStatus != 'admin') && <button onClick={() => createAdmin(x._id)} type='button'>Make Admin</button>}
-            </p>))}
+        <div className='container text-center'>
+            <h2>All Users</h2>
+            <table className='table'>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+            {users.map(x => (<tr key={x._id}>
+                <td>{users.indexOf(x) + 1}</td>
+                <td>{x.name}</td><td>{x.email}</td><td>{x.userStatus}</td>
+                <td>{(x.userStatus == 'student') && <button className='btn btn-primary mx-1' onClick={() => createInst(x._id)} type='button'>Make Instructor</button>}
+                {(x.userStatus != 'admin') && <button className='btn btn-primary mx-1' onClick={() => createAdmin(x._id)} type='button'>Make Admin</button>}</td>
+            </tr>))}
+            </tbody>
+            </table>
         </div>
     );
 };
