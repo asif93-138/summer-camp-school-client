@@ -21,7 +21,16 @@ const ContextProvider = ({children}) => {
                         })
                         .then(res => res.json())
                         .then(data => setUserStatus(data.userStatus))
-                    } else {setTimeout(function() {location.reload();}, 500)}
+                    } else {setTimeout(function() {
+                        fetch(`https://summer-camp-school-server.onrender.com/user/${user.uid}`, {
+                            method: 'GET',
+                            headers: {
+                                authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
+                            }
+                        })
+                        .then(res => res.json())
+                        .then(data => setUserStatus(data.userStatus))
+                    }, 1000)}
                 }
               });
             return () => {
