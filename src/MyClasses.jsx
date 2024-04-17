@@ -8,7 +8,7 @@ const MyClasses = () => {
     const [count, setCount] = useState(0);
     const [formState, setFormState] = useState(true);
     useEffect(() => {
-        fetch(`http://localhost:3000/classes/${user?.uid}`, {
+        fetch(`https://summer-camp-school-server.onrender.com/classes/${user?.uid}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`

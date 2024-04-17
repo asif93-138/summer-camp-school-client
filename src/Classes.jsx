@@ -9,7 +9,7 @@ const Classes = () => {
     const [btnDis, setBtnDis] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
-        axios.get('http://localhost:3000/classes')
+        axios.get('https://summer-camp-school-server.onrender.com/classes')
         .then(res => setAllClasses(res.data))
         if (userStatus == 'admin' || userStatus == 'instructor') {setBtnDis(true)}
     }, [userStatus])
@@ -19,7 +19,7 @@ const Classes = () => {
                 course: data,
                 student: user.uid
             };
-            fetch('http://localhost:3000/selections', {
+            fetch('https://summer-camp-school-server.onrender.com/selections', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

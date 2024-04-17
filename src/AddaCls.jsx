@@ -20,7 +20,7 @@ const AddaCls = () => {
             cStatus: 'pending'
         };
         
-        fetch('http://localhost:3000/classes', {
+        fetch('https://summer-camp-school-server.onrender.com/classes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

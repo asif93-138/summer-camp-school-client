@@ -1,5 +1,5 @@
 # Project Overview 
-## Summer Camp School
+## COLLEGE OF MAGIC
 - It's a full stack website with complete CRUD operation.
 - It has an authentication system based on google firebase.
 - 'Dashboard' route can show user specific information.
