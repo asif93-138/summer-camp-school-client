@@ -10,7 +10,7 @@ const UpdateClsForm = ({x, setCount, count, formState, setFormState}) => {
             seats : form.seats.value, price: form.price.value
         };
         
-        fetch(`https://summer-camp-school-server.onrender.com/updatethecourse/${form.id.value}`, {
+        fetch(`http://localhost:3000/updatethecourse/${form.id.value}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

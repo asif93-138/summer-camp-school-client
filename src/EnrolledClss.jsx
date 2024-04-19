@@ -5,7 +5,7 @@ const EnrolledClss = () => {
     const {user} = useContext(CampContext);
     const [enrolled, setEnrolled] = useState([]);
     useEffect(() => {
-        fetch(`https://summer-camp-school-server.onrender.com/enrolled/${user?.uid}`, {
+        fetch(`http://localhost:3000/enrolled/${user?.uid}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`

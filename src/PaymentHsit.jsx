@@ -6,7 +6,7 @@ const PaymentHsit = () => {
     const [payments, setPayments] = useState([]);
     const [paymentT, setPaymentT] = useState(0);
     useEffect(() => {
-        fetch(`https://summer-camp-school-server.onrender.com/enrolled/${user?.uid}`, {
+        fetch(`http://localhost:3000/enrolled/${user?.uid}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`

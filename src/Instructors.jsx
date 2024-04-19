@@ -5,7 +5,7 @@ const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
     const filteredIns = [];
     useEffect(() => {
-        axios.get('https://summer-camp-school-server.onrender.com/classes')
+        axios.get('http://localhost:3000/classes')
         .then(res => setInstructors(res.data))
     }, [])
     instructors.forEach(x => {

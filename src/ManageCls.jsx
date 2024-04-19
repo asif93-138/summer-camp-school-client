@@ -5,7 +5,7 @@ const ManageCls = () => {
     const [count, setCount] = useState(0);
     const [showFeedback, setShowFeedback] = useState(true);
     useEffect(() => {
-        fetch('https://summer-camp-school-server.onrender.com/classes', {
+        fetch('http://localhost:3000/classes', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
@@ -21,7 +21,7 @@ const ManageCls = () => {
         let updatedObj;
         if (p1 == 'ap') {updatedObj = {cStatus: 'approved'}}
         else if (p1 == 'dn') {updatedObj = {cStatus: 'denied'}}
-        fetch(`https://summer-camp-school-server.onrender.com/adcourseupdate/${pm}`, {
+        fetch(`http://localhost:3000/adcourseupdate/${pm}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -36,7 +36,7 @@ const ManageCls = () => {
     function adminFeedback(event) {
         event.preventDefault();
         let updatedObj = {adminFB: event.target.fb.value};
-        fetch(`https://summer-camp-school-server.onrender.com/adcourseupdate/${event.target.id.value}`, {
+        fetch(`http://localhost:3000/adcourseupdate/${event.target.id.value}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

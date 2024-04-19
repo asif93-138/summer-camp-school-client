@@ -7,7 +7,7 @@ const SelectedCls = () => {
     const [count, setCount] = useState(1);
     const [formState, setFormState] = useState(true);
     useEffect(() => {
-        fetch(`https://summer-camp-school-server.onrender.com/selections/${user?.uid}`, {
+        fetch(`http://localhost:3000/selections/${user?.uid}`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
@@ -20,7 +20,7 @@ const SelectedCls = () => {
         })
     }, [user, count])
     function classDeletion(data, p1) {
-        fetch(`https://summer-camp-school-server.onrender.com/selections/${data}`, {
+        fetch(`http://localhost:3000/selections/${data}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -39,7 +39,7 @@ const SelectedCls = () => {
             const dataObj = JSON.parse(event.target.dataObj.value);
             dataObj.cardNumber = event.target.cardNumber.value;
 
-            fetch(`https://summer-camp-school-server.onrender.com/payments/${dataObj.course._id}`, {
+            fetch(`http://localhost:3000/payments/${dataObj.course._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

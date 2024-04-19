@@ -13,7 +13,7 @@ const ContextProvider = ({children}) => {
                 setUser(user);
                 if (user) {
                     if (localStorage.getItem('scs-access-token')) {
-                        fetch(`https://summer-camp-school-server.onrender.com/user/${user.uid}`, {
+                        fetch(`http://localhost:3000/user/${user.uid}`, {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
@@ -22,7 +22,7 @@ const ContextProvider = ({children}) => {
                         .then(res => res.json())
                         .then(data => setUserStatus(data.userStatus))
                     } else {setTimeout(function() {
-                        fetch(`https://summer-camp-school-server.onrender.com/user/${user.uid}`, {
+                        fetch(`http://localhost:3000/user/${user.uid}`, {
                             method: 'GET',
                             headers: {
                                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`

@@ -24,7 +24,7 @@ const SignIn = () => {
     // Signed in 
     const user = userCredential.user;
     const userObj = {id: user.uid, name: user.displayName, email: user.email};
-    fetch(`https://summer-camp-school-server.onrender.com/user/${user.uid}`, {
+    fetch(`http://localhost:3000/user/${user.uid}`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -54,7 +54,7 @@ const SignIn = () => {
               // The signed-in user info.
               const user = result.user;
               const userObj = {id: user.uid, name: user.displayName, email: user.email};
-              fetch(`https://summer-camp-school-server.onrender.com/user/${user.uid}`, {
+              fetch(`http://localhost:3000/user/${user.uid}`, {
                 method: 'POST',
                 headers: {
                   'content-type': 'application/json'

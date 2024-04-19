@@ -6,7 +6,7 @@ function App() {
   const [classes, setClasses] = useState([]);
   const [Instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch('https://summer-camp-school-server.onrender.com/classes')
+    fetch('http://localhost:3000/classes')
     .then(res => res.json())
     .then(data => {
       data.sort(function(a, b) {return b.enrolled - a.enrolled});
@@ -24,7 +24,7 @@ function App() {
   return (
     <div className='container'>
   
-<section id="demo" className="carousel slide" data-bs-ride="carousel">
+<section id="demo" className="carousel slide mb-5" data-bs-ride="carousel">
 
   
   <div className="carousel-indicators">
@@ -55,6 +55,7 @@ function App() {
   </button>
 </section>
 <h3 className='text-center'>Top Classes</h3>
+<p className='text-center'>According to the number of enrolled students.</p>
 <section className='row'>
 {classes.map(x => (<div className='col-sm-4' key={x._id}>
         <div className='card p-3 m-4'>
@@ -67,6 +68,7 @@ function App() {
     </div>))}
 </section>
 <h3 className='text-center'>Top Instructors</h3>
+<p className='text-center'>According to the number of enrolled students.</p>
 <section className='row'>
 {Instructors.map(x => (<div className='col-sm-4' key={x._id}>
       <div className='card m-4'>
@@ -82,4 +84,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

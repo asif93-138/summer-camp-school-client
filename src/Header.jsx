@@ -63,7 +63,6 @@ const Header = () => {
           <img title={user?.displayName + imgTitle} src={user?.photoURL} className='img-fluid user-img rounded-circle mb-2 mb-sm-0 me-2' />
         </li>
         </>}
-
       </ul>
       {user ? 
         <button className="btn btn-outline-dark" type="button" onClick={logOut}>Logout</button>
