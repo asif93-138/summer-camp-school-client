@@ -6,7 +6,7 @@ function App() {
   const [classes, setClasses] = useState([]);
   const [Instructors, setInstructors] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/classes')
+    fetch('https://summer-camp-school-server.onrender.com/classes')
     .then(res => res.json())
     .then(data => {
       data.sort(function(a, b) {return b.enrolled - a.enrolled});

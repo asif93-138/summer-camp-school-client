@@ -4,7 +4,7 @@ const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const [count, setCount] = useState(0);
     useEffect(() => {
-        fetch('http://localhost:3000/allusers', {
+        fetch('https://summer-camp-school-server.onrender.com/allusers', {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('scs-access-token')}`
@@ -17,7 +17,7 @@ const ManageUsers = () => {
         })
     }, [count])
     function createInst(id) {
-        fetch(`http://localhost:3000/userstatus/${id}`, {
+        fetch(`https://summer-camp-school-server.onrender.com/userstatus/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -30,7 +30,7 @@ const ManageUsers = () => {
         })
     }
     function createAdmin(id) {
-        fetch(`http://localhost:3000/userstatus/${id}`, {
+        fetch(`https://summer-camp-school-server.onrender.com/userstatus/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
