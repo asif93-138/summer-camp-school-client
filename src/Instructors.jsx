@@ -3,10 +3,14 @@ import axios from 'axios';
 
 const Instructors = () => {
     const [instructors, setInstructors] = useState([]);
+    const [loading, setLoading] = useState(true);
     const filteredIns = [];
     useEffect(() => {
         axios.get('https://summer-camp-school-server.onrender.com/classes')
-        .then(res => setInstructors(res.data))
+        .then(res => {
+            setInstructors(res.data);
+            setLoading(false);
+        })
     }, [])
     instructors.forEach(x => {
         if (filteredIns.find(y => y.insID == x.insID) == undefined) {
@@ -15,8 +19,10 @@ const Instructors = () => {
     });
     
     return (
-        <div className='container'>
-            <table className='table text-center'>
+        <div className='container text-center'>
+            <h2>Our Instructors</h2>
+            <p>Instructors from all classes are displayed below.</p>
+            { loading ? <h2>Loading..</h2> : <table className='table'>
                 <thead>
                   <tr>
                     <th>#</th>
@@ -33,7 +39,7 @@ const Instructors = () => {
                 <td>{x.insEmail}</td>
                 </tr>))}
                 </tbody>
-            </table>
+            </table>}
 
         </div>
     );

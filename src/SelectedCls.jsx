@@ -6,6 +6,7 @@ const SelectedCls = () => {
     const [courses, setCourses] = useState([]);
     const [count, setCount] = useState(1);
     const [formState, setFormState] = useState(true);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch(`https://summer-camp-school-server.onrender.com/selections/${user?.uid}`, {
             method: 'GET',
@@ -16,7 +17,7 @@ const SelectedCls = () => {
         .then(res => res.json())
         .then(data => {
             if (data.error) {alert(data.message);}
-            else {setCourses(data)}
+            else {setCourses(data); setLoading(false);}
         })
     }, [user, count])
     function classDeletion(data, p1) {
@@ -58,9 +59,9 @@ const SelectedCls = () => {
 
     return (
         <div className='container text-center'>
-            <p><b>Classes you have selected will appear here!</b></p>
+            <h2>Classes you have selected will appear here</h2>
             <div className='row'>
-            {courses.map(x => (<div key={x._id} className='col-sm-4'>
+            { loading ? <h2>Loading..</h2> : courses.map(x => (<div key={x._id} className='col-sm-4'>
             <div className='card p-3 m-4'>
                 <img src={x.course.cImgURL} className='card-img-top' />
                 <div className="card-body mt-3 text-center">

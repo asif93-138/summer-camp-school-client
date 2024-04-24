@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ManageUsers = () => {
     const [users, setUsers] = useState([]);
     const [count, setCount] = useState(0);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch('https://summer-camp-school-server.onrender.com/allusers', {
             method: 'GET',
@@ -13,7 +14,7 @@ const ManageUsers = () => {
         .then(res => res.json())
         .then(data => {
             if (data.error) {alert(data.message);}
-            else {setUsers(data)}
+            else {setUsers(data); setLoading(false);}
         })
     }, [count])
     function createInst(id) {
@@ -45,7 +46,8 @@ const ManageUsers = () => {
     return (
         <div className='container text-center'>
             <h2>All Users</h2>
-            <table className='table'>
+            <p>Manage your users.</p>
+            { loading ? <h2>Loading..</h2> : <div className='table-responsive'><table className='table'>
                 <thead>
                   <tr>
                     <th>#</th>
@@ -63,7 +65,8 @@ const ManageUsers = () => {
                 {(x.userStatus != 'admin') && <button className='btn btn-primary mx-1' onClick={() => createAdmin(x._id)} type='button'>Make Admin</button>}</td>
             </tr>))}
             </tbody>
-            </table>
+            </table></div>}
+
         </div>
     );
 };

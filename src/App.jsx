@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 function App() {
   const [classes, setClasses] = useState([]);
   const [Instructors, setInstructors] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch('https://summer-camp-school-server.onrender.com/classes')
     .then(res => res.json())
@@ -17,7 +18,7 @@ function App() {
             filteredIns.push(x);
         }
     });
-    setInstructors(filteredIns.slice(0, 6));
+    setInstructors(filteredIns.slice(0, 6)); setLoading(false);
     })
   }, [])
 
@@ -57,7 +58,7 @@ function App() {
 <h3 className='text-center'>Top Classes</h3>
 <p className='text-center'>According to the number of enrolled students.</p>
 <section className='row'>
-{classes.map(x => (<div className='col-sm-4' key={x._id}>
+{ loading ? <h2>Loading..</h2> : classes.map(x => (<div className='col-sm-4' key={x._id}>
         <div className='card p-3 m-4'>
         <img className='card-img-top w-100' src={x.cImgURL} />
       <div className="card-body mt-3 text-center">
@@ -70,7 +71,7 @@ function App() {
 <h3 className='text-center'>Top Instructors</h3>
 <p className='text-center'>According to the number of enrolled students.</p>
 <section className='row'>
-{Instructors.map(x => (<div className='col-sm-4' key={x._id}>
+{ loading ? <h2>Loading..</h2> : Instructors.map(x => (<div className='col-sm-4' key={x._id}>
       <div className='card m-4'>
       <img className='card-img-top w-100' src={x.insImgURL} />
       <div className="card-body text-center">

@@ -4,6 +4,7 @@ import { CampContext } from '../ContextProvider';
 const EnrolledClss = () => {
     const {user} = useContext(CampContext);
     const [enrolled, setEnrolled] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch(`https://summer-camp-school-server.onrender.com/enrolled/${user?.uid}`, {
             method: 'GET',
@@ -14,14 +15,14 @@ const EnrolledClss = () => {
         .then(res => res.json())
         .then(data => {
             if (data.error) {alert(data.message);}
-            else {setEnrolled(data)}
+            else {setEnrolled(data); setLoading(false);}
         })
     }, [user])
    
     return (
         <div className='container text-center'>
             <h2>Classes you have enrolled</h2>
-            <table className='table'>
+            { loading ? <h2>Loading..</h2> : <table className='table'>
                 <thead>
                   <tr>
                     <th>#</th>
@@ -38,7 +39,8 @@ const EnrolledClss = () => {
                 <td>{x.course.insName}</td>
             </tr>))}
             </tbody>
-            </table>
+            </table>}
+
         </div>
     );
 };

@@ -4,6 +4,7 @@ const ManageCls = () => {
     const [classes, setClasses] = useState([]);
     const [count, setCount] = useState(0);
     const [showFeedback, setShowFeedback] = useState(true);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch('https://summer-camp-school-server.onrender.com/classes', {
             method: 'GET',
@@ -14,7 +15,7 @@ const ManageCls = () => {
         .then(res => res.json())
         .then(data => {
             if (data.error) {alert(data.message);}
-            else {setClasses(data)}
+            else {setClasses(data); setLoading(false);}
         })
     }, [count])
     function statusUpdate(pm, p1) {
@@ -52,7 +53,7 @@ const ManageCls = () => {
         <div className='container text-center'>
             <h2>Manage your classes</h2>
             <div className='row'>
-            {classes.map(x => (<div key={x._id} className='col-sm-4'>
+            { loading ? <h2>Loading..</h2> : classes.map(x => (<div key={x._id} className='col-sm-4'>
             <div className='card p-3 m-4'>
                 <img src={x.cImgURL} className='card-img-top' />
                 <div className="card-body mt-3 text-center">

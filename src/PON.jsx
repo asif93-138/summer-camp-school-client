@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const PON = () => {
     return (
-        <div>
-            404 <Link to='/'>Home</Link>
+        <div className='container text-center'>
+            <h2>404</h2> <Link to='/'>Home</Link>
         </div>
     );
 };

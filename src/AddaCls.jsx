@@ -39,7 +39,7 @@ const AddaCls = () => {
     return (
         <div className='container'>
             <h2 className='text-center'>Add your class</h2>
-            <form className='w-75 mx-auto' onSubmit={addingClass}>
+            <form className='w-75 log-i mx-auto' onSubmit={addingClass}>
                 <div className='mb-3 mt-3'>
                 <label>Class Name:</label>
                 <input type='text' className='form-control' name='className' placeholder='class name' />

@@ -80,7 +80,7 @@ const SignIn = () => {
     return (
         <div className='container'>
           <h2 className='text-center'>Login</h2>
-      <form className='w-75 mx-auto' onSubmit={handleSubmit(onSubmit)}>
+      <form className='w-75 log-i mx-auto' onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <div className='mb-3 mt-3'>
       <label htmlFor='email'>Email : </label>

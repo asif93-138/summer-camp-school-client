@@ -5,6 +5,7 @@ const PaymentHsit = () => {
     const {user} = useContext(CampContext);
     const [payments, setPayments] = useState([]);
     const [paymentT, setPaymentT] = useState(0);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         fetch(`https://summer-camp-school-server.onrender.com/enrolled/${user?.uid}`, {
             method: 'GET',
@@ -18,7 +19,7 @@ const PaymentHsit = () => {
             else {
                 const arr = [];
                 data.forEach(x => arr.unshift(x));
-                setPayments(arr);
+                setPayments(arr); setLoading(false);
             }
         })
     }, [user])
@@ -32,9 +33,9 @@ const PaymentHsit = () => {
    
     return (
         <div className='container text-center'>
-            <h2>Classes you have enrolled</h2>
+            <h2>Your payment history</h2>
             <h4>Total Payments : {paymentT}</h4>
-            <table className='table'>
+            { loading ? <h2>Loading..</h2> : <table className='table'>
                 <thead>
                   <tr>
                     <th>#</th>
@@ -51,7 +52,8 @@ const PaymentHsit = () => {
                 <td>{x.cardNumber}</td>
             </tr>))}
             </tbody>
-            </table>
+            </table>}
+
         </div>
     );
 };
