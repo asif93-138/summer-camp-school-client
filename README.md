@@ -4,7 +4,7 @@
 - It has an authentication system based on google firebase.
 - 'Dashboard' route can show user specific information.
 - It has 'Admin Panel'.
-- Homepage is mobile responsive.
+- Full site is mobile responsive.
 
 **Admin-Panel :** Email - "admin@scs.ac", Password - "Admin1."
 
